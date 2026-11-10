@@ -1,51 +1,86 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-{% if products %}
+<section class="product-page">
 
-<table>
+    <aside class="filter-sidebar">
+        <h3>Filters</h3>
 
-    <thead>
-         <tr>
-            <th>ID</th>
-            <th>TITLE</th>
-            <th>DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>IMAGE</th>
-            <th>CREATED AT</th>
-            <th>LAST MODIFIED</th>
-        </tr>
-    </thead>
+        <form method="GET">
 
-    <tbody>
-        {% for product in products %}
-        <tr>
-            <td>{{product.id}}</td>
-            <td><a href="{% url 'product-detail' product.id %}">{{product.title|upper}}</a></td>
-            <td>{{product.description|upper}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.quantity}}</td>
-            <td><img src="{{product.product_image.first.image.url}}" alt="product-image" width="50" height="50"></td>
-            <td>{{product.created_at}}</td>
-            <td>{{product.updated_at}}</td>
-        </tr>
+            <div class="filter-group">
+                <h4>Gender</h4>
+                <label><input type="checkbox" name="gender" value="men"> Men</label>
+                <label><input type="checkbox" name="gender" value="women"> Women</label>
+                <label><input type="checkbox" name="gender" value="unisex"> Unisex</label>
+            </div>
 
-        {% endfor %}
-    </tbody>
+            <div class="filter-group">
+                <h4>Category</h4>
+                <label><input type="checkbox" name="category" value="sneakers"> Sneakers</label>
+                <label><input type="checkbox" name="category" value="boots"> Boots</label>
+                <label><input type="checkbox" name="category" value="casual"> Casual</label>
+            </div>
 
-</table>
+             <div class="filter-group">
+                <h4>Price Range</h4>
+                <label><input type="checkbox" name="category" value="sneakers"> $500 - 1000</label>
+                <label><input type="checkbox" name="category" value="boots"> $1000 - 5000</label>
+                <label><input type="checkbox" name="category" value="casual"> $10000+</label>
+            </div>
 
-{% else %}
-<h3>NO PRODUCTS AVAILABLE</h3>
+            <button type="submit" class="filter-submit">Apply Filters</button>
 
-{% endif %}
+        </form>
+    </aside>
+
+
+    <div class="products-section">
+
+        <div class="products-heading">
+            <div>
+                <h2>Our Collection</h2>
+                <p>Find your perfect pair.</p>
+            </div>
+
+            <button class="grid-toggle" id="gridToggle">
+                4 Grid
+            </button>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+
+            {% for product in products %}
+
+                <a href="{% url 'product-detail' product.pk %}" class="product-card">
+
+                    <div class="product-image">
+
+                        {% for image in product.product_image.all %}
+                            {% if image.is_cover %}
+                                <img src="{{ image.image.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="product-info">
+                        <h3>{{ product.title }}</h3>
+                        <p>${{ product.price|floatformat:2 }}</p>
+                    </div>
+
+                </a>
+
+            {% empty %}
+                <p>No products available.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
-
-
-{% for product_image in product.product_image.all %}
-    <img src="{{ product_image.image.url }}" alt="Product image">
-{% endfor %}

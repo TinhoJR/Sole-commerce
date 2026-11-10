@@ -50,5 +50,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    const gridToggle = document.getElementById("gridToggle");
+    const productGrid = document.getElementById("productGrid");
+
+    gridToggle.addEventListener("click", () => {
+
+        productGrid.classList.toggle("four-columns");
+
+        gridToggle.textContent =
+            productGrid.classList.contains("four-columns")
+            ? "3 Grid"
+            : "4 Grid";
+
+    });
+
 
 })
