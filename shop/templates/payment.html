@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+{% load static %}
+
+
+
+    <main class="payment-container">
+
+        <section class="order-details">
+
+            <h2>Order Summary</h2>
+
+            <p>Order Reference: {{ order.order_id }}</p>
+
+            <div class="order-items">
+
+                {% for item in order.order_items.all %}
+
+                    <div class="order-item">
+
+                        <div class="item-image">
+
+                            {% for product_image in item.product.product_image.all %}
+
+                                {% if product_image.is_cover %}
+
+                                    <img
+                                        src="{{ product_image.image.url }}"
+                                        alt="{{ item.product.title }}"
+                                    >
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="item-details">
+
+                            <h3>{{ item.product.title }}</h3>
+
+                            <p>Quantity: {{ item.quantity }}</p>
+
+                            <p>Price: ₦{{ item.price }}</p>
+
+                        </div>
+
+                    </div>
+
+                {% empty %}
+
+                    <p>No items were found for this order.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <section class="customer-details">
+
+            <h2>Customer Information</h2>
+
+            <p>Name: {{ order.full_name }}</p>
+
+            <p>Email: {{ order.email }}</p>
+
+            <p>Phone: {{ order.phone_number }}</p>
+
+        </section>
+
+
+        <section class="payment-method">
+
+            <h2>Payment Method</h2>
+
+            <div class="payment-option">
+                <input
+                    type="radio"
+                    name="payment_method"
+                    value="paystack"
+                    checked
+                    disabled
+                >
+
+                <label>Pay with Paystack</label>
+            </div>
+
+            <button type="button" id="pay-now-btn">
+                Continue to Paystack
+            </button>
+
+        </section>
+
+    </main>
+
+
+{% endblock %}

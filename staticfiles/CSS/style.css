@@ -1,0 +1,165 @@
+
+.cartPage-wrapper{
+    padding: 0px 100px;
+}
+
+.allCart-wrapper{
+    padding: 10px 0px 30px 0px;
+}
+
+.cart-display{
+    padding: 20px 0px 5px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cartInfo-wrapper{
+    background-color: white;
+    width: 40%;
+    padding: 100px 30px 40px 30px;
+    border-radius: 25px;
+    position: absolute;
+    right: 30px; 
+    z-index: 55;   
+}
+
+.cartInfo-wrapper h4 i{  
+    color: green;
+}
+
+.cartInfo-wrapper h4{
+    font-size: 18px;
+    padding: 20px 0px;
+}
+
+.cartdetail-wrapper{
+    display: flex;
+    column-gap: 30px;
+   
+
+}
+
+
+
+.cartdetail-wrapper h3,
+.cartdetail-wrapper p,
+.cartdetail-wrapper h6{
+    line-height: 10px;
+}
+
+.cartdetail-wrapper h3{
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.cartdetail-wrapper .product-price{
+    padding: 7px 0px;
+}
+
+.cartdetail-wrapper div img{
+    max-width: 100%;
+    height: 120px;
+    max-height: 125px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.cartdetail-wrapper .product-size{
+    width: fit-content;
+    border-bottom: 2px solid grey;
+    padding-bottom: 3px;
+}
+
+.cartdetail-wrapper .product-price{
+    font-weight: 600;
+}
+
+.product-title{
+    font-size: 19px !important;
+}
+
+.product-information-wrapper{
+    width: 70% !important;
+}
+
+.product-price-style{
+    text-align: end;
+    padding: 10px 0px;
+    font-weight: 600;
+}
+
+.incrementation-wrapper {
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    width: fit-content;
+    margin: 20px 0px;
+    border-radius: 23px;
+    vertical-align: middle;
+}
+
+.incrementation-wrapper div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.incrementation-wrapper div span {
+    padding: 4px 10px;
+    font-size: 17px;
+    color: black;
+    font-weight: 300;
+}
+
+.incrementation-wrapper div button {
+    height: 40px !important;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 22px;
+    background-color: transparent;
+    color: black;
+    line-height: 1; 
+    padding: 0;
+}
+
+.incrementation-wrapper div button:hover {
+    background-color: #ccc;
+}
+
+/* Button wrapper */
+.btn-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.btn-wrapper button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Toggle visibility */
+.removebtn-style {
+    visibility: hidden;
+}
+
+.btn-wrapper.show-delete .removebtn-style {
+    visibility: visible;
+}
+
+.btn-wrapper.show-delete .minus-btn {
+    visibility: hidden;
+}
+
+.removebtn-style i {
+    font-size: 17px;
+    line-height: 40px; 
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}

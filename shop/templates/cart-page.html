@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<p class="empty-cart-mgs">No Item in Bag</p>
+
+
+<div class="cart-page-wrapper">
+
+<div>
+
+    <div class="shopping-cart-wrapper">
+
+
+    </div>
+
+    <template id="cart-item-template">
+            <div class="cart-display" data-product-id="">
+                <div class="cartdetail-wrapper">
+                    <div class="product-img">
+                        <img src="">
+                    </div>
+                    <div class="product-information-wrapper">
+                        <h3 class="product-title"></h3>
+                        <h6 class="product-price"></h6>
+                        <h6 class=" product-price-style">Total: <span class="total-price"></span></h6>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="incrementation-wrapper">
+                        <div class="btn-wrapper">
+                            <button class="minus-btn increm-btn"> - </button>
+                            <button class="remove-btn removebtn-style">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                        <div><span class="product-qty"></span></div>
+                        <div><button class="plus-btn"> + </button></div>
+                    </div>
+                </div>
+            </div>
+    </template>
+
+</div>
+
+
+<div class="summary-wrapper">
+        <h3>Summary</h3>
+        <div>
+            <button class="promoBtn">Do you have a Promo Card</button>
+            <div class="promo-info">
+                <form>
+                    <input placeholder="" type="text">
+                    <button>Apply</button>
+                </form>
+            </div>
+        </div>
+        <main class="payment-info-wrapper">
+            <div>
+                <p>Subtotal</p>
+                <h6 class="">0.00</h6>
+            </div>
+            <div>
+                <p>Estimated Shipping & Handling</p>
+                <h6 class="">Free</h6>
+            </div>
+            <div>
+                <p>Estimated Tax</p>
+                <h6 class="">Free</h6>
+            </div>
+            <div>
+                <p>Discount Total</p>
+                <h6 class="">Free</h6>
+            </div>
+            <div>
+                <p>Total</p>
+                <h6 class="total-cartAmount"></h6>
+            </div>
+        </main>
+
+        <div class="checkOut-toggle">
+            <div>
+                <p>You qualify for <b>Free Shipping</b> as a Member! <a href="#">Join us</a> or <a href="#">Sign-in</a></p>
+
+                <button class="viewCart-a"><a href="{% url 'checkout' %}">Checkout</a></button>
+            </div>
+        </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'JS/cart.js' %}"></script> 
+{% endblock %}   

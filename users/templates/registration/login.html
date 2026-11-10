@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form method="post"  action="" class="register-form" style="margin-top: 300px;">
+    <div class="register-form-wrapper">
+        {% csrf_token %}
+        {{form.as_p}}
+    </div>
+
+    <div class="navigations">
+        <button type="submit" class="btn">Login</button>
+
+        <a href="{% url 'password_reset' %}"> Forgot Password?</a>
+    </div>
+</form>
+{% endblock %}

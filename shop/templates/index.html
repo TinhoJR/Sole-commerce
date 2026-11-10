@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero-section">
+        <div class="bgoverlay"></div>
+        <div>
+           <div class="row">
+            <div class="col-md-6 col-lg-6 col-12">
+                <div class="hero-content">
+                     <h3>Step Into Excellence.</h3>
+            <p>
+               Discover the perfect blend of style, comfort, and quality.
+               <b>Elan</b> brings you premium sneakers crafted for those who move with purpose.
+            </p>
+
+            <button class="cta-btn">Shop Now</button>
+            <button class="cta-btn">Explore Collections</button>
+                </div>
+            </div>
+
+           </div>
+        </div>
+</section>
+
+
+<section class="product-section">
+    <div class="product-grid">
+
+        {% for product in products %}
+        <a href="{% url 'product-detail' product.pk %}" class="product-card">
+
+            <div class="product-image">
+                {% for productimage in product.product_image.all %}
+                  {% if productimage.is_cover %}
+                  <img src="{{productimage.image.url}}"
+                     alt="Product name">
+                  {% endif %}  
+                {% endfor %}     
+            </div>
+
+            <div class="product-info">
+                <h3>{{product.title}}</h3>
+                <p>Men's Shoe</p>
+                <h4>${{product.price}}</h4>
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+<section class="collection-section">
+        <div>
+            <div class="collection-wrapper">
+              <div class="">
+                <div>
+                    <h3>See Our New Collection</h3>
+
+                    <div class="collection-image">
+                       <img src="{% static 'IMAGES/compiled-set.jpeg' %}"> 
+                    </div>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="collection-info">
+                  <p>Discover the freshest drops in sneakers and slides 
+                     where comfort meets attitude. Unisex. Unapologetic. Undeniably bold.
+                  </p>
+                  <h5>Style that Speaks Before You Do.</h5>
+
+                  <p>
+                    They say first impressions matter and your sneakers just said everything.
+                    This is where the classics meet the future. A collection built for those who 
+                    move different, walk louder, and show up without asking for permission.
+                    <p>
+                        From statement-making sneakers to effortlessly cool slides, we’ve curated 
+                        the essentials that work for anyone and everyone. Gender? Doesn’t matter. 
+                        What matters is how you show up.
+                    </p>
+                  </p>
+
+                  <a href="#">
+                    View All Collection
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+ <div class="navigations">     
+            
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+
+                <button type="submit">LOGOUT</button>
+            </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if products %}
+
+<table>
+
+    <thead>
+         <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>DESCRIPTION</th>
+            <th>PRICE</th>
+            <th>QTY</th>
+            <th>IMAGE</th>
+            <th>CREATED AT</th>
+            <th>LAST MODIFIED</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{product.id}}</td>
+            <td><a href="{% url 'product-detail' product.id %}">{{product.title|upper}}</a></td>
+            <td>{{product.description|upper}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td><img src="{{product.product_image.first.image.url}}" alt="product-image" width="50" height="50"></td>
+            <td>{{product.created_at}}</td>
+            <td>{{product.updated_at}}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% else %}
+<h3>NO PRODUCTS AVAILABLE</h3>
+
+{% endif %}
+
+{% endblock %}
+
+
+{% for product_image in product.product_image.all %}
+    <img src="{{ product_image.image.url }}" alt="Product image">
+{% endfor %}

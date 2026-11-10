@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="checkout-page">
+
+    <!-- PAYMENT SECTION -->
+    <div class="checkout-payment">
+        <h2>Payment Details</h2>
+        <p>Enter your details to complete your order.</p>
+
+        <form method="post" action="{% url 'order' %}" id="checkout-payment-form">
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <fieldset class="payment-method">
+                <legend>Payment Method</legend>
+
+                <label class="payment-option">
+                    <input
+                        type="radio"
+                        name="payment_method"
+                        value="online"
+                        required
+                    >
+                    <span>
+                        <strong>Pay Online</strong>
+                        <small>Continue to secure payment</small>
+                    </span>
+                </label>
+
+                <label class="payment-option">
+                    <input
+                        type="radio"
+                        name="payment_method"
+                        value="cash_on_delivery"
+                    >
+                    <span>
+                        <strong>Cash on Delivery</strong>
+                        <small>Pay when your order arrives, if available</small>
+                    </span>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="checkout-submit">
+                Continue to Payment
+            </button>
+        </form>
+    </div>
+
+
+    <!-- ORDER SUMMARY SECTION -->
+    <div class="checkout-order">
+
+        <div class="order-header">
+            <div>
+                <h2>Your Order</h2>
+                <p>Review your selected products.</p>
+            </div>
+
+            <span id="checkout-item-count">0 items</span>
+        </div>
+
+        <!-- CLONED PRODUCT ITEMS WILL APPEAR HERE -->
+        <div class="checkout-items" id="checkout-items">
+            <p class="checkout-status">Loading your order...</p>
+        </div>
+
+        <!-- PRODUCT TEMPLATE -->
+        <template id="checkout-item-template">
+            <div class="checkout-item" data-product-id="">
+
+                <div class="checkout-item-image">
+                    <img src="" alt="">
+                </div>
+
+                <div class="checkout-item-details">
+                    <h3 class="checkout-item-title"></h3>
+                    <p class="checkout-item-quantity"></p>
+                </div>
+
+                <div class="checkout-item-price"></div>
+
+            </div>
+        </template>
+
+        <!-- ORDER TOTALS -->
+        <div class="checkout-totals">
+
+            <div class="total-row">
+                <span>Subtotal</span>
+                <span id="checkout-subtotal">₦0.00</span>
+            </div>
+
+            <div class="total-row">
+                <span>Delivery</span>
+                <span id="checkout-delivery">Calculated at checkout</span>
+            </div>
+
+            <div class="total-row grand-total">
+                <strong>Total</strong>
+                <strong id="checkout-total">₦0.00</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'JS/checkout.js' %}"></script> 
+{% endblock %}  
+
+
+
+
+<div class="checkout-field">
+                <label for="full-name">Full Name</label>
+                <input
+                    type="text"
+                    id="full-name"
+                    name="full_name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+</div>
+
+<div class="checkout-field">
+<label for="email">Email Address</label>
+<input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Enter your email"
+    autocomplete="email"
+    required
+>
+</div>
+
+<div class="checkout-field">
+<label for="phone">Phone Number</label>
+<input
+    type="tel"
+    id="phone"
+    name="phone"
+    placeholder="Enter your phone number"
+    autocomplete="tel"
+    required
+>
+</div>
+
+<div class="checkout-field">
+<label for="address">Delivery Address</label>
+<textarea
+    id="address"
+    name="address"
+    placeholder="Enter your delivery address"
+    rows="3"
+    autocomplete="street-address"
+    required
+></textarea>
+</div>

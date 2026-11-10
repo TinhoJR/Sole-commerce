@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post"  action="" class="register-form" style="margin-top: 200;">
+    <div  class="register-form-wrapper">
+        {% csrf_token %}
+
+        {{form.as_p}} 
+    </div>
+
+    <div class="navigations">
+         <button type="submit" class="btn btn-primary">Register</button>
+        <a href="{% url 'login' %}"> Login</a>
+        
+    </div>
+
+   
+</form>
+
+{% endblock %}

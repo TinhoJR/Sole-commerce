@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block intro %}
+<section class="adHeadlines">
+
+        <div class="css-marquee">
+         <div class="marquee-track">
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+           
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+
+          </div> 
+        </div>
+
+</section>
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail-section">
+    <!-- <p>Image count: {{ product.product_image.count }}</p> -->
+    <div class="product-detail-layout">
+
+        <!-- 1. SMALL PRODUCT IMAGES -->
+         
+        <aside class="product-thumbnails" aria-label="Product images">
+
+            {% for productimage in product.product_image.all %}
+                <button type="button" class="product-thumbnail" data-image-url="{{ productimage.image.url }}"
+                    data-is-cover="{{ productimage.is_cover|yesno:'true,false' }}"
+                    aria-label="View product image"
+                    aria-pressed="false">
+                    <img src="{{ productimage.image.url }}" alt="{{ product.name }}">
+                </button>
+            {% endfor %}
+
+        </aside>
+
+
+        <!-- 2. LARGE PRODUCT IMAGE -->
+        <div class="product-main-image-column">
+            <div class="product-image-stage">
+                <img
+                    id="main-product-image"
+                    src=""
+                    alt="{{ product.name }}"
+                >
+            </div>
+        </div>
+
+
+        <!-- 3. PRODUCT DETAILS -->
+        <div class="product-details">
+
+            <h1>{{ product.title }}</h1>
+
+             <div class="product-description">
+                {{ product.description }}
+            </div>
+
+            <p class="product-price">
+                {{ product.price }}
+            </p>
+
+           
+
+            <div class="product-actions">
+
+                <div
+                    class="cart-btn-wrapper"
+                    data-product-id="{{ product.pk }}"
+                    data-product-title="{{ product.title }}"
+                    data-product-price="{{ product.price }}"
+                    data-product-img="{% for productimage in product.product_image.all %}{% if productimage.is_cover %}{{ productimage.image.url }}{% endif %}{% endfor %}">
+                
+                    <button type="button" class="add-to-cart">
+                        Add to cart
+                    </button>
+                </div>
+
+                <button
+                    type="button"
+                    class="favorite-btn"
+                    id="favorite-button"
+                    aria-pressed="false"
+                >
+                    <span id="favorite-icon">♡</span>
+                    <span id="favorite-text">Add to favorites</span>
+                </button>
+
+            </div>
+
+            <div class="product-extra-details">
+
+                <div class="product-detail-item">
+                    <h3>Product details</h3>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <div class="product-detail-item">
+                    <h3>Shipping information</h3>
+                    <p>Display your shipping information here.</p>
+                </div>
+
+                <div class="product-detail-item">
+                    <h3>Returns</h3>
+                    <p>Display your returns policy here.</p>
+                </div>
+
+                <div class="product-detail-item">
+                    <h3>Additional information</h3>
+                    <p>Display any other product information here.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- <div class="cart-btn-wrapper" data-product-id="{{product.pk}}" data-product-title="{{product.title}}" data-product-price="{{product.price}}" data-product-img="{{product.product_image.first.image.url}}">
+     <button type="submit" class="add-to-cart">Add To Cart</button>
+</div> -->
+
+
+<div class="parentCart-holder">
+         <div class="cartInfo-wrapper">
+            <h4><i class="fa-regular fa-circle-check"></i> Added to Cart</h4>
+             <div class="closeCart"><i class="fa-regular fa-circle-xmark"></i></div>
+
+            <div class="miniCart-holder">
+
+
+            </div>
+
+           <a href="{% url 'cart-page' %}" class="viewCart-a">View Cart (<span class="badge">  </span>)</a>
+           <a href="#" class="viewCart-f">Checkout</a>
+
+            <template id="mini-CartItem-template">
+                <div class="MiniCart-display" data-product-id="">  
+                    <div class="cartdetail-wrapper">
+                        <div class="product-img">
+                        <img src="">
+                        </div>
+                    <div>
+                    <h6 class="product-price"></h6>
+                    <h3 class="product-title"></h3>  
+                </div>
+            </template>
+
+
+        </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'JS/cart.js' %}"></script> 
+<script src="{% static 'JS/script.js' %}"></script> 
+{% endblock %}  
+
