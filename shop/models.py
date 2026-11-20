@@ -20,6 +20,10 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def cover_image(self):
+        return self.product_image.get(is_cover= True)
+
 
     def delete(self,*args,**kwargs):
         self.is_deleted = True
@@ -60,9 +64,16 @@ class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="order")
     full_name = models.CharField(max_length=400)
     email = models.EmailField()
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=400)
     order_id = models.UUIDField(unique=True,default=uuid.uuid4,blank=False,null=False)
     date = models.DateTimeField(auto_now_add=True)
+
+
+    @property
+    def latest_status(self):
+        order_status = self.status.order_by("date")
+        print(order_status)
+        return order_status
 
     def __str__(self):
         return "{} - {}".format(self.full_name,self.date)
@@ -74,12 +85,16 @@ class OrderStatus(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="order_items")
     order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name="order_items")
     quantity = models.IntegerField()
     price = models.DecimalField()
     date = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.product.title 
 
     
     

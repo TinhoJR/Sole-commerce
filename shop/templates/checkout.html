@@ -64,7 +64,7 @@
             <span id="checkout-item-count">0 items</span>
         </div>
 
-        <!-- CLONED PRODUCT ITEMS WILL APPEAR HERE -->
+       
         <div class="checkout-items" id="checkout-items">
             <p class="checkout-status">Loading your order...</p>
         </div>
@@ -92,7 +92,7 @@
 
             <div class="total-row">
                 <span>Subtotal</span>
-                <span id="checkout-subtotal">₦0.00</span>
+                <span id="checkout-subtotal" class="total-cartAmount"></span>
             </div>
 
             <div class="total-row">
@@ -102,7 +102,7 @@
 
             <div class="total-row grand-total">
                 <strong>Total</strong>
-                <strong id="checkout-total">₦0.00</strong>
+                <strong id="checkout-total" class="total-cartAmount"></strong>
             </div>
 
         </div>
@@ -116,6 +116,7 @@
 
 {% block script %}
 <script src="{% static 'JS/checkout.js' %}"></script> 
+<script src="{% static 'JS/cart.js' %}"></script> 
 {% endblock %}  
 
 

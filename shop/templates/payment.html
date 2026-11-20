@@ -80,21 +80,23 @@
 
             <h2>Payment Method</h2>
 
-            <div class="payment-option">
+            <form method="post" class="payment-form">
+                {% csrf_token %}
+                <div class="payment-option">
                 <input
                     type="radio"
                     name="payment_method"
                     value="paystack"
                     checked
-                    disabled
-                >
+                    disabled >
 
                 <label>Pay with Paystack</label>
-            </div>
+                </div>
 
-            <button type="button" id="pay-now-btn">
-                Continue to Paystack
-            </button>
+                <button type="submit" id="pay-now-btn">
+                    Continue to Paystack
+                </button>
+            </form>
 
         </section>
 

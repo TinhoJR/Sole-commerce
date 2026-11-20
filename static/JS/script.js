@@ -53,7 +53,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const gridToggle = document.getElementById("gridToggle");
     const productGrid = document.getElementById("productGrid");
 
-    gridToggle.addEventListener("click", () => {
+    if(gridToggle) {
+        gridToggle.addEventListener("click", () => {
+
+            console.log("clicked")
 
         productGrid.classList.toggle("four-columns");
 
@@ -63,6 +66,41 @@ document.addEventListener("DOMContentLoaded", function() {
             : "4 Grid";
 
     });
+    }
+
+
+
+const registerForm = document.querySelector(".register-form");
+
+const password1 = document.querySelector("#id_password1");
+const password2 = document.querySelector("#id_password2");
+
+if(registerForm) {
+
+    registerForm.addEventListener("submit", function(event) {
+
+    if (password1.value !== password2.value) {
+
+        event.preventDefault();
+
+        alert("Passwords do not match!");
+
+        password2.focus();
+
+    }
+
+});
+
+}
+
+
+let paymentForm = document.querySelector(".payment-form")
+
+if (paymentForm) {
+    paymentForm.addEventListener("submit", function() {
+    alert("yooo")
+    })
+}
 
 
 })

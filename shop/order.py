@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse,JsonResponse
 import json
-from . models import Order,OrderItems,Product
+from . models import Order,OrderItem,Product,OrderStatus
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -25,9 +25,9 @@ class OrderView(LoginRequiredMixin,View):
             email=email,
             phone_number=phone_number)
 
-        print(self.request.user)
-        print(self.request.user.is_authenticated)
-        print(self.request.user.is_anonymous)
+        OrderStatus.objects.create(order=order,status="created")
+
+        
         
         for cartitem in cart:
             
@@ -38,7 +38,7 @@ class OrderView(LoginRequiredMixin,View):
             except Exception as e:
                 print(f"PRODUCT ERROR: {e}")
                 continue    
-            OrderItems.objects.create(
+            OrderItem.objects.create(
                 # product__pk = cartitem["product_id"],
                 product_id = cartitem["product_id"],
                 order= order,
@@ -83,4 +83,13 @@ class PaymentView(LoginRequiredMixin,View):
         }
 
         return render(request,self.template_name,context)
+
+    def post(self,request,*args,**kwargs):
+
+        order_id = kwargs["order_id"]
+        order = Order.objects.get(order_id=order_id)
+
+        OrderStatus.objects.create(order=order,status="paid")
+
+        return HttpResponse("ORDER PAID")
         

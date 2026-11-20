@@ -19,9 +19,9 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
     profile_picture = models.FileField(null=True,blank=True,upload_to="profiles/")
-    phone_number = models.IntegerField()
-    state = models.CharField(max_length=350)
-    country = models.CharField(max_length=350)
+    phone_number = models.CharField(null=True,blank=True)
+    state = models.CharField(max_length=350,blank=True,null=True)
+    country = models.CharField(max_length=350,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

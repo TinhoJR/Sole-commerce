@@ -1,0 +1,91 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="orders-section">
+
+    <div class="orders-header">
+        <div>
+            <h1>My Orders</h1>
+            <p>Track and manage your purchases.</p>
+        </div>
+    </div>
+
+    <div class="orders-container">
+
+        {% for order in orders %}
+
+        <div class="order-card">
+
+            <div class="order-top">
+                <div>
+                    <span class="order-label">ORDER ID</span>
+                    <h3>{{ order.order_id }}</h3>
+                </div>
+
+                
+            </div>
+
+            <div class="order-info">
+                <div>
+                    <span>Order Date</span>
+                    <p>{{ order.date|date:"M d, Y" }}</p>
+                </div>
+
+                <div>
+                    <span>Customer</span>
+                    <p>{{ order.full_name }}</p>
+                </div>
+            </div>
+
+            <div class="order-products">
+
+                {% for item in order.order_items.all %}
+
+                <div class="order-product">
+
+                    <div class="product-image">
+                        <img src="{{ item.product.cover_image.image.url  }}"
+                             alt="{{ item.product.title }}">
+                    </div>
+
+                    <div class="product-details">
+                        <h4>{{ item.product.title }}</h4>
+                        <p>Quantity: {{ item.quantity }}</p>
+                    </div>
+
+                    <div class="product-price">
+                        ₦{{ item.price }}
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="order-bottom">
+                <span>Order Total</span>
+
+                
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-orders">
+            <h2>No orders yet</h2>
+            <p>Your purchases will appear here once you place an order.</p>
+            <a href="{% url 'shop' %}">Start Shopping</a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -152,6 +153,6 @@ MAILERS = {
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = reverse_lazy("dashboard")
 
-LOGOUT_REDIRECT_URL = "register"
+LOGOUT_REDIRECT_URL = reverse_lazy("login")

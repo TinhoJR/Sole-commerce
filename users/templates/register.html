@@ -2,20 +2,35 @@
 
 {% block content %}
 
-<form method="post"  action="" class="register-form" style="margin-top: 200;">
-    <div  class="register-form-wrapper">
-        {% csrf_token %}
 
-        {{form.as_p}} 
+<div class="form-parent-wraper">
+
+    <div>
+        <form method="post"  action="" class="register-form" style="margin-top: 200;">
+            <div  class="register-form-wrapper">
+                {% csrf_token %}
+
+                {{form.as_p}} 
+            </div>
+
+
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="{% url 'login' %}">Sign in</a>
+            </p>
+
+        </form>
     </div>
 
-    <div class="navigations">
-         <button type="submit" class="btn btn-primary">Register</button>
-        <a href="{% url 'login' %}"> Login</a>
-        
+    <div>
+        <p>gggg</p>
     </div>
 
-   
-</form>
+</div>
+
 
 {% endblock %}

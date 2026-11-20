@@ -2,6 +2,25 @@
 {% load static %}
 
 
+{% block intro %}
+<section class="adHeadlines">
+
+        <div class="css-marquee">
+         <div class="marquee-track">
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+           
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+
+          </div> 
+        </div>
+
+</section>
+{% endblock %}
+
 {% block content %}
 
 <p class="empty-cart-mgs">No Item in Bag</p>
@@ -25,7 +44,7 @@
                     <div class="product-information-wrapper">
                         <h3 class="product-title"></h3>
                         <h6 class="product-price"></h6>
-                        <h6 class=" product-price-style">Total: <span class="total-price"></span></h6>
+                        <h6 class=" product-price-style"><span class="total-price"></span></h6>
                     </div>
                 </div>
 
@@ -61,7 +80,7 @@
         <main class="payment-info-wrapper">
             <div>
                 <p>Subtotal</p>
-                <h6 class="">0.00</h6>
+                <h6 class="total-cartAmount"></h6>
             </div>
             <div>
                 <p>Estimated Shipping & Handling</p>
@@ -93,14 +112,10 @@
 </div>
 
 
-
-
-
-
-
 {% endblock %}
 
 
 {% block script %}
 <script src="{% static 'JS/cart.js' %}"></script> 
+<script src="{% static 'JS/script.js' %}"></script> 
 {% endblock %}   

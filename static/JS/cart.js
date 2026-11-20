@@ -187,6 +187,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+    function updateCartBadge() {
+        // GET SAVED CART
+        let savedCart = getSavedCart();
+        // INCREASE WHEN PRODUCT QUANTITY INCREASES
+        let totalItems = savedCart.reduce((sum, item) => {
+            return sum + item.productQty;
+        }, 0)
+
+        document.querySelectorAll(".badge").forEach(badge => {
+            badge.innerHTML = totalItems;
+        })
+    }
+
+
      function updateQuantityBtn() {
         document.addEventListener("click", function(e) {
             const minusBtn = e.target.closest(".minus-btn");
@@ -239,6 +253,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 priceEl.textContent = `$${total.toFixed(2)}`;
                 }
 
+                updateCartBadge()
                 updateCartTotalAmount()
                 
         });
@@ -263,6 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function refreshCartUI() {
     loadCart();
     renderMiniCart()
+    updateCartBadge()
     updateCartTotalAmount()
    }
 

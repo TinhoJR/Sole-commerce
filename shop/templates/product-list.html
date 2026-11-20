@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block intro %}
+<section class="adHeadlines">
+
+        <div class="css-marquee">
+         <div class="marquee-track">
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+           
+           <p>🔥 Big Summer Sale! Up to 50% Off All Items – Shop Now!</p>
+           <p>🚀 Step Out In Stle </p>
+           <p>🎉 Join Our Community – 10,000+ Members and Growing!</p>
+
+          </div> 
+        </div>
+
+</section>
+{% endblock %}
+
 {% block content %}
 
 <section class="product-page">
@@ -26,9 +45,9 @@
 
              <div class="filter-group">
                 <h4>Price Range</h4>
-                <label><input type="checkbox" name="category" value="sneakers"> $500 - 1000</label>
-                <label><input type="checkbox" name="category" value="boots"> $1000 - 5000</label>
-                <label><input type="checkbox" name="category" value="casual"> $10000+</label>
+                <label><input type="checkbox" name="category" value="$500 - 1000"> $500 - 1000</label>
+                <label><input type="checkbox" name="category" value=" $1000 - 5000"> $1000 - 5000</label>
+                <label><input type="checkbox" name="category" value="$10000+"> $10000+</label>
             </div>
 
             <button type="submit" class="filter-submit">Apply Filters</button>
@@ -56,7 +75,7 @@
 
                 <a href="{% url 'product-detail' product.pk %}" class="product-card">
 
-                    <div class="product-image">
+                    <div class="l-product-image">
 
                         {% for image in product.product_image.all %}
                             {% if image.is_cover %}
@@ -66,7 +85,7 @@
 
                     </div>
 
-                    <div class="product-info">
+                    <div class="l-product-info">
                         <h3>{{ product.title }}</h3>
                         <p>${{ product.price|floatformat:2 }}</p>
                     </div>
@@ -84,3 +103,9 @@
 </section>
 
 {% endblock %}
+
+{% block script %}
+
+<script src="{% static 'JS/script.js' %}"></script> 
+
+{% endblock %}  
