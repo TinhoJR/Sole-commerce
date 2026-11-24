@@ -10,6 +10,17 @@ class DashboardView(TemplateView):
 
     template_name = "dashboard.html"
 
+    def get_context_data(self, **kwargs):
+        ctx = super(DashboardView,self).get_context_data(**kwargs)
+        orders = Order.objects.filter(user=self.request.user)
+        ctx["orders"] = orders
+        ctx["pending_orders"] = sum(1 for order in orders 
+                                    if order.latest_status and order.latest_status.status=="paid")
+        ctx["delivered_orders"] = sum(1 for order in orders
+                                      if order.latest_status and order.latest_status.status=="delivered")
+
+        return ctx
+
 
 class OrderListView(View):
 

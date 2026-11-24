@@ -1,4 +1,118 @@
 {% extends 'dashboard_base.html' %}
 
 
+{% block content %}
 
+<main class="main-content">
+<div class="dashboard-overview">
+
+    <!-- WELCOME -->
+    <section class="overview-welcome">
+        <div>
+            <span class="welcome-label">MY ACCOUNT</span>
+            <h1>Welcome back, {{user.username}}</h1>
+            <p>Here's a quick overview of your shopping activity.</p>
+        </div>
+
+        <a href="{% url 'product-list' %}" class="continue-shopping">
+            <i class="fa-solid fa-bag-shopping"></i>
+            Continue Shopping
+        </a>
+    </section>
+
+
+    <!-- STATISTICS -->
+    <section class="overview-stats">
+
+        <div class="overview-stat">
+            <div class="stat-top">
+                <span>Total Orders</span>
+                <i class="fa-solid fa-box"></i>
+            </div>
+            <h2>{{orders.count}}</h2>
+            <p>Your total purchases</p>
+        </div>
+
+        <div class="overview-stat">
+            <div class="stat-top">
+                <span>Paid Pending Orders</span>
+                <i class="fa-regular fa-clock"></i>
+            </div>
+            <h2>{{pending_orders}}</h2>
+            <p>Orders awaiting fulfilment</p>
+        </div>
+
+        <div class="overview-stat">
+            <div class="stat-top">
+                <span>Delivered Orders</span>
+                <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h2>{{delivered_orders}}</h2>
+            <p>Successfully delivered</p>
+        </div>
+
+        <div class="overview-stat">
+            <div class="stat-top">
+                <span>Favorite</span>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <h2>3</h2>
+            <p>Your saved products</p>
+        </div>
+
+    </section>
+
+    <!-- BOTTOM CONTENT -->
+    <section class="overview-bottom">
+
+        <div class="overview-profile">
+            <div class="bottom-heading">
+                <h3>Account Information</h3>
+                <a href="#">Edit Profile</a>
+            </div>
+
+            <div class="account-details">
+                <div class="account-avatar"></div>
+                <div>
+                    <h4>{{user.username}}</h4>
+                    <p>{{user.email}}</p>
+                </div>
+            </div>
+
+            <div class="account-info">
+                <div>
+                    <span>Phone Number</span>
+                    {% if user.profile.phone_number%}
+                    <p>{{user.profile.phone_number}}</p>
+                    {% else %}
+                    <p>None</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <span>Member Since</span>
+                    <p>{{user.date_joined}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="overview-promo">
+            <div class="promo-icon">
+                <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+
+            <span>NEW COLLECTION</span>
+            <h3>Step Into Something New.</h3>
+            <p>Discover footwear that matches your style.</p>
+
+            <a href="#">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </section>
+
+</div>
+</main>
+
+
+{% endblock %}
