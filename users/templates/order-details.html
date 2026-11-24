@@ -1,21 +1,18 @@
-
-
-{% extends 'base.html' %}
+{% extends 'dashboard_base.html' %}
 
 {% block content %}
 
-<section class="orders-section">
+<main class="main-content">
+    <section class="orders-section">
 
     <div class="orders-header">
         <div>
-            <h1>My Orders</h1>
-            <p>Track and manage your purchases.</p>
+            <h1>Order Items</h1>
+            <p>All Details</p>
         </div>
     </div>
 
     <div class="orders-container">
-
-        {% for order in orders %}
 
         <div class="order-card">
 
@@ -23,9 +20,7 @@
                 <div>
                     <span class="order-label">ORDER ID</span>
                     <h3>{{ order.order_id }}</h3>
-                </div>
-
-                
+                </div>     
             </div>
 
             <div class="order-info">
@@ -69,23 +64,27 @@
             <div class="order-bottom">
                 <span>Order Total</span>
 
-                
+                <p>{{order.order_items.all.count}}</p>
+
             </div>
 
+            <div class="order-bottom">
+                <span>Order Status</span>
+
+                <p>{{order.latest_status.status}}</p>
+            </div>
+
+
         </div>
 
-        {% empty %}
+        
 
-        <div class="empty-orders">
-            <h2>No orders yet</h2>
-            <p>Your purchases will appear here once you place an order.</p>
-            <a href="{% url 'shop' %}">Start Shopping</a>
-        </div>
-
-        {% endfor %}
-
+        
     </div>
 
 </section>
+
+</main>
+
 
 {% endblock %}

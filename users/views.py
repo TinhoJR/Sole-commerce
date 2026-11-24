@@ -11,13 +11,29 @@ class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
 
+class OrderListView(View):
+
+    template_name = "order_list.html"  
+
+    def get(self,request,*args,**kwargs):
+
+        context = {
+            "orders": Order.objects.filter(user=request.user).order_by("-date")
+        }  
+        return render(request,self.template_name,context)
+
+
 class OrderDetailView(View):
 
     template_name = "order-details.html"
-    def get(self,request,*args,**kwargs) :
 
+    def get(self,request,*args,**kwargs):
+        order_id = kwargs["order_id"]
+        order = Order.objects.get(order_id=order_id)
         context = {
-            "orders": Order.objects.filter(user=request.user)
-        }  
+            "order":order
+        }
 
-        return render(request,self.template_name,context) 
+        return render(request,self.template_name,context)
+
+    

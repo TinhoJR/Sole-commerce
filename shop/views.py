@@ -32,6 +32,6 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs):
         ctx = super(ProductListView,self).get_context_data()  
         ctx["shop_name"] = "Exclusive shopping mall"
-
+        
         return ctx
 

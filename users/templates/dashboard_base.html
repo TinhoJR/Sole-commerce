@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'CSS/dashboard_mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+        
+        <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+        <div class="nav-controls">
+        <p>{{request.user.username}}</p>
+        <button id="darkmode-toggle"><i class="fas fa-moon"></i></button>
+        <button id="expand-toggle">Expand</button>
+        <button id="profile-btn">Profile</button>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+    <ul>
+      <li><a class="accordion-btn" data-section="dashboard"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+      <li><a href="{% url 'order_list' %}" class="accordion-btn"><i class="fas fa-wallet"></i><span class="text">All Orders</span></a></li>
+      <li><a class="accordion-btn" data-section="invest"><i class="fas fa-arrow-trend-up"></i><span class="text">Invest</span></a></li>
+      <li><a class="accordion-btn" data-section="withdraw"><i class="fas fa-money-bill-wave"></i><span class="text">Withdraw</span></a></li>
+    </ul>
+    </div>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+<script src="{% static 'JS/dashboard.js' %}"></script>    
+
+
+</body>
+
+</html>

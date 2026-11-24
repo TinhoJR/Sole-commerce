@@ -1,0 +1,52 @@
+{% extends 'dashboard_base.html' %}
+
+{% block content %}
+<main class="main-content">
+    <section class="orders-section">
+
+    <div class="orders-header">
+        <div>
+            <h1>My Orders</h1>
+            <p>Track and manage your purchases.</p>
+        </div>
+    </div>
+
+    <div class="orders-container">
+
+        {% for order in orders %}
+
+        <a href="{% url 'order_detail' order.order_id %}" class="order-card">
+
+            <div class="order-top">
+                <div>
+                    <span class="order-label">ORDER ID</span>
+                    <h3>{{ order.order_id }}</h3>
+                    
+                </div>
+                <div>
+                    <span class="order-label">DATE</span>
+                    <h3>{{ order.date }}</h3>   
+                </div>
+                
+            </div>
+
+        </a>
+
+        {% empty %}
+
+        <div class="empty-orders">
+            <h2>No orders yet</h2>
+            <p>Your purchases will appear here once you place an order.</p>
+            <a href="{% url 'shop' %}">Start Shopping</a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
