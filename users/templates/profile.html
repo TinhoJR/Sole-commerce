@@ -1,0 +1,144 @@
+{% extends 'dashboard_base.html' %}
+
+
+{% block content %}
+
+<main class="main-content">
+<div class="profile-page">
+
+    <div class="profile-heading">
+        <h1>My Profile</h1>
+        <p>Manage your account and personal information.</p>
+    </div>
+
+    <!-- PROFILE HEADER -->
+    <section class="profile-card profile-header">
+
+        <div class="profile-avatar">
+            <img src="{{user.profile.display_photo}}" alt="profile-picture">
+        </div>
+
+        <div class="profile-header-info">
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <p>{{user.email}}</p>
+            <span class="member-badge">Active Member</span>
+        </div>
+
+        <div class="member-date">
+            <span>Member since</span>
+            <strong>{{object.created_at|date:"M d, Y"}}</strong>
+        </div>
+
+    </section>
+
+
+    <!-- ACCOUNT INFORMATION -->
+    <section class="profile-card">
+
+        <div class="section-heading">
+            <div>
+                <h2>Account Information</h2>
+                <p>Your registered account details.</p>
+            </div>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+                <span>Username</span>
+                <strong>{{user.username}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Email Address</span>
+                <strong>{{user.email}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Date Joined</span>
+                <strong>{{user.date_joined|date:"M d, Y"}}</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERSONAL INFORMATION -->
+    <section class="profile-card">
+
+        <div class="section-heading">
+            <div>
+                <h2>Personal Information</h2>
+                <p>Update your personal details.</p>
+            </div>
+        </div>
+
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ADDRESS INFORMATION -->
+    <section class="profile-card">
+
+        <div class="section-heading">
+            <div>
+                <h2>Address Information</h2>
+                <p>Manage your delivery address.</p>
+            </div>
+        </div>
+
+        <form method="POST">
+
+            <!-- ADDRESS DJANGO FORM GOES HERE -->
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">
+                    Save Address
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ACCOUNT SECURITY -->
+    <section class="profile-card">
+
+        <div class="section-heading">
+            <div>
+                <h2>Account Security</h2>
+                <p>Keep your account secure.</p>
+            </div>
+        </div>
+
+        <div class="security-row">
+            <div>
+                <h3>Password</h3>
+                <p>Update your password to keep your account safe.</p>
+            </div>
+
+            <a href="#" class="secondary-btn">
+                Change Password
+            </a>
+        </div>
+
+    </section>
+
+</div>
+</main>
+
+
+{% endblock %}

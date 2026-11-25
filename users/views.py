@@ -22,6 +22,20 @@ class DashboardView(TemplateView):
         return ctx
 
 
+class LogoutView(View):
+    template_name = "logout.html"
+
+    def get(self,request,*args,**kwargs):
+
+
+        return render(request,self.template_name,{})
+
+    def post(self,request,*args,**kwargs):
+    
+    
+        return render(request,"index.html",{})
+
+
 class OrderListView(View):
 
     template_name = "order_list.html"  

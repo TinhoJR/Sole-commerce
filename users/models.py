@@ -10,7 +10,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
 
 
-
     def __str__(self):
         return self.username
 
@@ -19,6 +18,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
     profile_picture = models.FileField(null=True,blank=True,upload_to="profiles/")
+    bio = models.CharField(max_length=450,null=True,blank=True)
     phone_number = models.CharField(null=True,blank=True)
     state = models.CharField(max_length=350,blank=True,null=True)
     country = models.CharField(max_length=350,blank=True,null=True)
@@ -27,11 +27,10 @@ class Profile(models.Model):
 
     @property
     def display_photo(self):
-
         try:
-            return self.profile_picture.url or static("IMAGES/default_dp.jpj")
+            return self.profile_picture.url or static("IMAGES/default_dp.jpg")
         except:
-            return static("IMAGES/default_dp.jpj")
+            return static("IMAGES/default_dp.jpg")
 
 
     def __str__(self):

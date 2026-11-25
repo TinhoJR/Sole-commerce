@@ -512,3 +512,251 @@
         font-size: 15px;
     }
 }
+
+
+
+.profile-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px;
+    color: #202938;
+}
+
+.profile-heading {
+    margin-bottom: 25px;
+}
+
+.profile-heading h1 {
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.profile-heading p,
+.section-heading p {
+    color: #87909e;
+    font-size: 14px;
+}
+
+.profile-card {
+    background: #fff;
+    border: 1px solid #edf0f4;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
+    border-radius: 50%;
+    background: #e9efff;
+    color: #3159c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile-header-info {
+    flex: 1;
+}
+
+.profile-header-info h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.profile-header-info p {
+    font-size: 13px;
+    color: #87909e;
+    margin-bottom: 9px;
+}
+
+.member-badge {
+    display: inline-block;
+    background: #e9f8ef;
+    color: #25834b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.member-date {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    text-align: right;
+}
+
+.member-date span,
+.info-item span {
+    color: #87909e;
+    font-size: 12px;
+}
+
+.member-date strong,
+.info-item strong {
+    font-size: 13px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Django form.as_p styling */
+
+.profile-card form p {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.profile-card form label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-card form input,
+.profile-card form textarea,
+.profile-card form select {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #e4e8ee;
+    border-radius: 7px;
+    outline: none;
+    font-size: 13px;
+    color: #202938;
+    box-sizing: border-box;
+}
+
+.profile-card form input:focus,
+.profile-card form textarea:focus,
+.profile-card form select:focus {
+    border-color: #3159c9;
+}
+
+.profile-card form .helptext {
+    color: #87909e;
+    font-size: 12px;
+}
+
+.profile-card form ul.errorlist {
+    color: #dc3545;
+    font-size: 12px;
+    list-style: none;
+    padding: 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.save-btn,
+.secondary-btn {
+    border: none;
+    border-radius: 7px;
+    padding: 13px 21px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.save-btn {
+    background: #3159c9;
+    color: #fff;
+}
+
+.save-btn:hover {
+    background: #2549ae;
+}
+
+.security-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.security-row h3 {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.security-row p {
+    color: #87909e;
+    font-size: 13px;
+}
+
+.secondary-btn {
+    color: #3159c9;
+    background: #edf2ff;
+    white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+    .profile-page {
+        padding: 20px 14px;
+    }
+
+    .profile-card {
+        padding: 19px;
+    }
+
+    .profile-header {
+        flex-wrap: wrap;
+    }
+
+    .member-date {
+        width: 100%;
+        text-align: left;
+        padding-top: 15px;
+        border-top: 1px solid #edf0f4;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .security-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+

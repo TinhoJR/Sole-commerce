@@ -1,0 +1,14 @@
+{% extends 'dashboard_base.html' %}
+
+
+{% block content %}
+
+<main class="main-content">
+    <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+
+    <button type="submit">LOGOUT</button>
+</form>
+</main>
+
+{% endblock %}
